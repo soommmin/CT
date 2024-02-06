@@ -20,16 +20,32 @@ def find(x):
 def union(x, y):
     x = find(x)
     y = find(y)
-    parent[y] = x
+    
+    if x!= y:
+        parent[y] = x 
+        number[x] += number[y]
 
-parent = []
+
+test_case = int(input())
+
+for _ in range(test_case):
+    parent = dict()
+    number = dict()
 
 
-for i in range(0, 5):
-    parent.append(i)
+    f = int(input())
 
-union(1, 4)
-union(2, 4)
+    for _ in range(f):
+        x,y = input().split(' ')
 
-for i in range(1, len(parent)):
-    print(find(i), end=' ')
+        if x not in parent:
+            parent[x] = x 
+            number[x] = 1 
+
+        if y not in parent:
+            parent[y] = y 
+            number[y] = 1 
+
+        union(x,y)
+
+        print(number[find(x)])
