@@ -1,0 +1,28 @@
+import sys
+sys.stdin=open("input.txt", "r")
+from collections import deque
+import heapq as hq
+import itertools as it
+import hashlib
+import copy 
+
+
+# 쇠막대기
+
+s = input()
+stack = []
+cnt = 0
+
+for i in range(len(s)):
+    if s[i] == '(':
+        stack.append(s[i])
+
+    else:
+        stack.pop()
+        if s[i-1] == '(':
+            cnt += len(stack)
+
+        else:
+            cnt +=1 
+
+print(cnt)
